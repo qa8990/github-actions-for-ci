@@ -8,7 +8,7 @@ on: [push]
 jobs:
   build:
 
-    needs: build
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -20,13 +20,10 @@ jobs:
         with:
           name: webpack artifacts
           path: public/
+
   test:
 
-    - uses: actions/download-artifact@main
-      with:
-        name: webpack artifacts
-        path: public
-    - name: npm install, and test
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
